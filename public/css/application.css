@@ -1,0 +1,28 @@
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+}
+th {
+  text-align: left;
+}
+
+.racer_table td {
+  background-color: #EAEBFD;
+
+  height: 40px;
+  width: 50px;
+}
+
+.racer_table #player1_strip td.active  {
+  background-color: #11A22F;
+}
+
+.racer_table #player2_strip td.active {
+	background-color: #3C44C4;
+}
+
+.racer_table td.finish {
+	background-color: #D61900;
+}

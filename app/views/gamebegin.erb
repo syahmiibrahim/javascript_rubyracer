@@ -1,0 +1,57 @@
+  <div class="container">
+  <center>
+  <h1><a href="/"> JS RUBY RACER!!</a></h1>
+  <h3> Are You Readyyy?! </h3>
+</center>
+  <p> <%= @player1.name.capitalize %> | Press "q" to move foward </p>
+   <table class="racer_table" width="">
+
+        <tr id="player1_strip">
+          <td class="active"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>    
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="finish"> Finish Line</td>
+      </tr>
+  
+      <tr id="player2_strip">
+        <td class="active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>    
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="finish"> Finish Line</td>
+      </tr>
+    </table><br>
+       <p> <%= @player2.name.capitalize %> | Press "p" to move foward </p> <br>
+    <center><button id="restart">Restart Race!</button></center>
+
+
+    <form id="result" action="/result" method="post" style="visibility:hidden">
+        <input type="text" name="winner">
+        <input type="text" name="loser">
+        <input type="text" name="game" value="<%= @game_id %>">
+    </form>
+
+    <script>
+    var player1_id = <%= @player1.id %> ;
+    var player2_id = <%= @player2.id %>; 
+    </script>
+    </div>

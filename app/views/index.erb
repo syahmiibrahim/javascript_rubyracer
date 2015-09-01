@@ -1,0 +1,31 @@
+<div class="container">
+ <h1>WELCOME TO JS RUBY RACER!</h1>
+ <p>Select name or <a href="/player/create">create a new one</a></p>
+ <form action="/game" method="post">
+  <table>
+    <tr>
+      <td>Player 1</td>
+      <td><select name="player1">
+         <% @player.each do |list| %>
+          <option value=<%=list.id%>><%=list.name%></option>  
+          <% end %>
+          </select>
+          </td>
+      </tr>
+    <tr>
+          <td>Player 2</td>
+          <td><select name="player2">
+            <% @player.each do |list|  %>
+            <option value=<%=list.id%>><%=list.name%></option>  
+            <% end %>
+            </select>
+          </td>
+    </tr>
+    </table>
+    <br>
+    <input type="submit" value="Game On">
+    </form>
+
+
+
+</div>
