@@ -1,0 +1,17 @@
+<div class="container">
+<center><h2><a href="/">Score Sheet Records</a> </h2></center>
+<table border="1" style="width:100%" >
+	<tr style="text-align:center">
+		<th>Winner</th>
+		<th>Loser</th>
+		<th>Time</th>
+	</tr>
+	<% @game.each do |list| %>
+	<tr style="text-align:center">
+		<td> <%= Player.find(list.winner_id).name.capitalize %></td>
+		<td> <%= Player.find(list.loser_id).name.capitalize %></td>
+		<td> <%= list.time_taken %> </td>
+	</tr>
+	<% end %>
+</table>
+</div>

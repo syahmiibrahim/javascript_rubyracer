@@ -40,7 +40,9 @@ end
 get '/game/:player1/:player2/:game_id' do 
   @player1 = Player.find(params[:player1])
   @player2 = Player.find(params[:player2])
-  @game_id = params[:game_id]
+  @game = Game.find(params[:game_id])
+  @player1.games << @game
+  @player2.games << @game
 
   session[:player1] = @player1.id
   session[:player2] = @player2.id
@@ -66,4 +68,11 @@ get '/result/:id' do
   @player_win = Player.find(@game.winner_id)
   @player_lose = Player.find(@game.loser_id)
   erb :gameresult
+end
+
+get '/viewgame' do
+  @game = Game.all
+  @playergame = PlayerGame.all
+  @player = Player.all 
+  erb :viewresult
 end

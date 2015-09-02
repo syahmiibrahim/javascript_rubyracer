@@ -62,7 +62,6 @@ function submitForm(winner,loser) {
 	forms = document.getElementById('result');
 	forms.winner.value = winner;
 	forms.loser.value = loser;
-	debugger
 	forms.submit();
 }
 
