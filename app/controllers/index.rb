@@ -44,6 +44,7 @@ get '/game/:player1/:player2/:game_id' do
   @player1.games << @game
   @player2.games << @game
 
+  @page_name = "game_on"
   session[:player1] = @player1.id
   session[:player2] = @player2.id
   session[:time] = Time.now

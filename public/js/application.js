@@ -1,68 +1,81 @@
-$(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+function GamePage () {
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-var player1_position = 1;
-var player2_position = 1;
+var Player = function(id){
+	this.id = id;
+	this.position = 1;
 
-var player1move = function() {
-	$('tr#player1_strip > td.active').removeClass().next().addClass('active')
-	player1_position ++
+	function playerMove (player) {
+		$("tr#player"+ this.playerNo +"_strip > td.active").removeClass().next().addClass('active')
+		this.position ++
+	}
+	this.playerMove = playerMove;
 };
 
-var player2move = function() {
-	$('tr#player2_strip > td.active').removeClass().next().addClass('active')
-	player2_position ++
-};
+var Game = function(player1,player2){
+	this.player1 = player1;
+	this.player2 = player2;
+	this.player1.playerNo = "1";
+	this.player2.playerNo = "2";
 
-var restart_race = function(){
+	function won () {
+		if (player1.position == 14){
+			alert("Player 1 has won!");
+			var winner = player1.id;
+			var loser = player2.id.;
+			submitForm(winner,loser);
+		}
+		else if (player2.position == 14){
+			alert("Player 2 has won!");
+			var winner = player2.id;
+			var loser = player1.id;
+			submitForm(winner,loser);
+		}
+	}
+	
+	this.won = won;
+
+	function submitForm(winner,loser) {
+		forms = document.getElementById('result');
+		forms.winner.value = winner;
+		forms.loser.value = loser;
+		forms.submit();
+	}
+
+	function restart_race () {
 	player1_position = 1;
 	player2_position = 1;
 
 	$('tr#player1_strip > td').removeClass('active').first().addClass('active')
 	$('tr#player2_strip > td').removeClass('active').first().addClass('active')
-};
-
-var won = function () {
-	if (player1_position == 14){
-		alert("Player 1 has won!");
-		var winner = player1_id;
-		var loser = player2_id;
-		submitForm(winner,loser);
-
 	}
-	else if (player2_position == 14){
-		alert("Player 2 has won!");
-		var winner = player2_id;
-		var loser = player1_id;
-		submitForm(winner,loser);
-	}
-	
-};
 
-
-$("button#restart").click(function() {
+	$("button#restart").click(function() {
 	restart_race();
-});
+	});
+
+};
+
+var player1 = new Player(player1_id);
+var player2 = new Player(player2_id);
+var game = new Game(player1,player2);
 
 $(document).keyup(function(keyCode){
+
 	if (keyCode.which === 81){
-		player1move();
+		game.player1.playerMove();
 	}
 	else if(keyCode.which === 80){
-		player2move();
+		game.player2.playerMove();
 	}
 
-	won();
+	game.won();
 });
 
-function submitForm(winner,loser) {
-	forms = document.getElementById('result');
-	forms.winner.value = winner;
-	forms.loser.value = loser;
-	forms.submit();
-}
+};
 
+$(document).ready(function(){
+
+	if($('body').hasClass('game_on')){
+		GamePage();
+	}
 });
